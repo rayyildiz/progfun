@@ -1,5 +1,7 @@
 package recfun
 import common._
+import scala.util._
+import scala.collection.mutable._
 
 object Main {
   def main(args: Array[String]) {
@@ -15,21 +17,21 @@ object Main {
    * Exercise 1
    */
   def pascal(c: Int, r: Int): Int = {
-    def findAbove(currentRow : Int, currentColumn:Int): Int = {
-      if ( currentColumn == 0 || currentRow == 0 ||  currentColumn == currentRow  ) return 1;
+    def findAbove(currentRow: Int, currentColumn: Int): Int = {
+      if (currentColumn == 0 || currentRow == 0 || currentColumn == currentRow) return 1
 
-      return findAbove( currentRow-1, currentColumn -1) + findAbove(currentRow-1, currentColumn) ;
+      findAbove(currentRow - 1, currentColumn - 1) + findAbove(currentRow - 1, currentColumn)
     }
 
-    var result = 1;
+    var result = 1
 
-    if ( r > 0 && c > 0){
-      if ( c == r) result = 1;
-      else result = findAbove( r-1, c -1) + findAbove(r-1, c);
+    if (r > 0 && c > 0) {
+      if (c == r) result = 1
+      else result = findAbove(r - 1, c - 1) + findAbove(r - 1, c)
     }
 
-    return result;
-  } 
+    result
+  }
 
   /**
    * Exercise 2
@@ -37,21 +39,57 @@ object Main {
   def balance(chars: List[Char]): Boolean = {
     var result = false
 
-    if ( chars != null && !chars.isEmpty){
-      var numberOfP = 0;
-      chars.foreach((c: Char) =>{
-        if ( c == '(' && numberOfP >= 0) numberOfP +=1;
-        if ( c == ')') numberOfP -=1;
+    if (chars != null && !chars.isEmpty) {
+      var numberOfP = 0
+      chars.foreach((c: Char) => {
+        if (c == '(' && numberOfP >= 0) numberOfP += 1
+        if (c == ')') numberOfP -= 1
       });
 
-      result = (numberOfP == 0);
+      result = (numberOfP == 0)
     }
 
-    return result;
+    return result
   }
 
   /**
    * Exercise 3
    */
-  def countChange(money: Int, coins: List[Int]): Int = ???
+  def countChange(money: Int, coins: List[Int]): Int = {
+    var result = 0
+    
+    def findDivider(number: Int, t1: Int) {
+      println("number: " + number + " t1:" + t1 + "  result:" + result);
+      if (number > 0) {
+        coins.foreach((c: Int) => {
+          var t = number - c;
+         
+          println(">> number:"+number + " c:"+ c + " t:"+t);
+          if (t == 0) {
+            result += 1;
+          } else if (t > 0) {
+            findDivider(t, c);
+          }
+        });
+     
+      }
+      println("-------------");
+    }
+
+    if (coins == null || coins.isEmpty) return result;
+
+    coins.foreach((c: Int) => {
+      var t = money - c;
+      if (t == 0) {
+        result += 1;
+      } else if (t > 0) {
+        findDivider(t, c);
+      }
+      
+    });
+
+    println("Result is " + result);
+
+    return result;
+  }
 }
