@@ -1,0 +1,20 @@
+INDEX VERSION 1.126+D:\projects\coursera\progfun\.metadata\.plugins\org.eclipse.jdt.core
+3348805599.index
+408230058.index
+3801241904.index
+2699952442.index
+1374572858.index
+1068473213.index
+3576630922.index
+585358107.index
+1908968046.index
+2383947587.index
+49324195.index
+931414814.index
+2288342258.index
+426523474.index
+767535767.index
+130859450.index
+2402188211.index
+4088014553.index
+2928761771.index
