@@ -17,3 +17,13 @@ project/plugins/project/
 .metadata
 *.scala~
 .gitignore~
+.idea
+.DS_Store
+.cache
+*.iml
+out/
+.idea
+.idea/
+streams/.idea
+stream/.idea
+
