@@ -15,3 +15,5 @@ project/plugins/project/
 .classpath
 .project
 .metadata
+*.scala~
+.gitignore~
